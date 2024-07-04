@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace HBAcademy
 {
@@ -10,18 +11,18 @@ namespace HBAcademy
     {
         public static void Y1()                      
         {
-             // Kiểm tra mảng số nguyên
+             //Kiem tra mang sso nguyen
              int[] numbers = { 1, 2, 3, 4, 5 };
-             Console.WriteLine(Contains(numbers, 1)); // Output: True
-             Console.WriteLine(Contains(numbers, 9)); // Output: False
+             Console.WriteLine(Contains(numbers, 1)); 
+             Console.WriteLine(Contains(numbers, 9)); 
 
-             // Kiểm tra chuỗi
+             //Kiem tra chuoi
              string text = "HB Academy!";
-             Console.WriteLine(Contains(text, 'A')); // Output: True
-             Console.WriteLine(Contains(text, 'z')); // Output: False
+             Console.WriteLine(Contains(text, 'A')); 
+             Console.WriteLine(Contains(text, 'z')); 
         }
 
-            // Hàm Contains cho mảng số nguyên
+            //Ham Contains cho mang so nguyen
             public static bool Contains(int[] array, int value)
             {
                 for (int i = 0; i < array.Length; i++)
@@ -34,7 +35,7 @@ namespace HBAcademy
                 return false;
             }
 
-            // Hàm Contains cho chuỗi
+            //Ham Contains cho chuoi
             public static bool Contains(string str, char value)
             {
                 for (int i = 0; i < str.Length; i++)
@@ -59,11 +60,13 @@ namespace HBAcademy
             str = Console.ReadLine();
             l = str.Length;
 
-            //// Kien tra ky tu trong chuoi
+            // Kien tra ky tu trong chuoi
+            //Dung count
             chuCaiT = str.Count(C => (C >= 'a' && C <= 'z'));
             chuCaiH=str.Count(c=>(c>='A'&&c<='Z'));
             chuSo = str.Count(c => (c >= '0' && c <= '9'));
             kyTuDacBiet=l-chuCaiH-chuCaiT-chuSo-kyTuDacBiet;
+            //Dung vong lap
             //while (i < l)
             //{
             //    if (str[i] >= 'a' && str[i] <= 'z')
@@ -90,6 +93,61 @@ namespace HBAcademy
             Console.Write("So chu cai hoa trong chuoi la: {0}\n", chuCaiH);
             Console.Write("So chu so trong chuoi la: {0}\n", chuSo);
             Console.Write("So ky tu dac biet trong chuoi la: {0}\n\n", kyTuDacBiet);
+        }
+        public static void Y3()
+        {
+            StringBuilder name = new StringBuilder("  NguyEn  VaN huNg  ");
+            while (name[0] == ' ')
+            {
+                name.Remove(0, 1);
+            }
+            Console.WriteLine(name);
+            //xoa ky tu trang cuoi
+            while (name[name.Length - 1] == ' ')
+            {
+                name.Remove(name.Length - 1, 1);
+            }
+            Console.WriteLine(name);
+            //xoa ky tu giua
+            for (int i = 0; i < name.Length; i++)
+            {
+                if (name[i] == ' ')
+                {
+                    while (name[i + 1] == ' ')
+                    {
+                        name.Remove(i + 1, 1);
+                    }
+                }
+            }
+            //Chuyen chu hoa thanh chu thuong
+            Console.WriteLine(name);
+            for (int i = 0; i < name.Length; i++)
+                if (name[i] >= 'A' && name[i] <= 'Z')
+                {
+                    name[i] = (char)(name[i] + 32);
+                }
+            Console.WriteLine(name);
+            //sau dau cach chuyen thanh chu hoa
+            bool khoangtrang = true;
+            for (int i = 0; i < name.Length; i++)
+            {
+                if (name[i] == ' ')
+                {
+                    khoangtrang = true;
+                }
+                else if (khoangtrang && name[i] >= 'a' && name[i] <= 'z')
+                {
+                    name[i] = (char)(name[i] - 32);
+                    khoangtrang = false;
+
+                }
+                else
+                {
+                    khoangtrang = false;
+
+                }
+            }
+            Console.WriteLine(name);
         }
 
     }
